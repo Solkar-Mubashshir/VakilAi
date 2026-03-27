@@ -2,13 +2,13 @@
 
 Making legal documents accessible to every Indian, in plain English and Hindi.
 
-Built for Hacktoon 1.0n| Organized by Neuronyx Club, AIKTC
+Built for Hacktoon 1.0
+Organized by Neuronyx Club, AIKTC
 
 
 ## 🧠 What is VakilAI?
 
 VakilAI is an AI-powered legal document simplifier that helps everyday Indians understand complex legal documents — without needing a lawyer. Upload any legal PDF (rental agreement, NDA, employment contract), and VakilAI instantly breaks it down into plain language, flags risky clauses, and even reads it out loud to you.
-
 
 
 ## ✨ Key Features
@@ -48,9 +48,7 @@ VakilAI is an AI-powered legal document simplifier that helps everyday Indians u
 └────────────────┘    └─────────────────────┘
 
 
-
 ## 📁 Project Structure
-
 
 VakilAI/
 ├── backend/

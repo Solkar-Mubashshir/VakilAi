@@ -1,101 +1,101 @@
-# ⚖️ VakilAI — Legal Document Simplifier for India
+# ⚖️ VakilAI
 
-Making legal documents accessible to every Indian, in plain English and Hindi.
+**AI-powered legal document simplifier — in plain English & Hindi**
 
-Built for Hacktoon 1.0
-Organized by Neuronyx Club, AIKTC
+> 🏆 Built for **Hacktoon 1.0** · Neuronyx Club, AIKTC
 
+---
 
 ## 🧠 What is VakilAI?
 
 VakilAI is an AI-powered legal document simplifier that helps everyday Indians understand complex legal documents — without needing a lawyer. Upload any legal PDF (rental agreement, NDA, employment contract), and VakilAI instantly breaks it down into plain language, flags risky clauses, and even reads it out loud to you.
 
+---
 
 ## ✨ Key Features
 
 | Feature | Description |
 |--------|-------------|
-| 📄 PDF Upload | Upload any legal document in PDF format |
-| 🤖 AI Summary | LLaMA 3 (via Groq) generates plain English/Hindi summaries |
-| 🚨 Risk Flags | Automatically detects and highlights dangerous clauses |
-| 🎯 RiskMeter | Visual danger-level indicator for the entire document |
-| 🃏 ClauseCards | Clause-by-clause breakdown in simple language |
-| 🔊 Voice Explanation | Web Speech API reads out summaries aloud |
-| 📁 Document History | All past documents saved per user account |
-| 🔐 Secure Auth | JWT-based login & registration |
+| 📄 **PDF Upload** | Upload any legal document in PDF format |
+| 🤖 **AI Summary** | LLaMA 3 (via Groq) generates plain English/Hindi summaries |
+| 🚨 **Risk Flags** | Automatically detects and highlights dangerous clauses |
+| 🎯 **RiskMeter** | Visual danger-level indicator for the entire document |
+| 🃏 **ClauseCards** | Clause-by-clause breakdown in simple language |
+| 🔊 **Voice Explanation** | Web Speech API reads out summaries aloud |
+| 📁 **Document History** | All past documents saved per user account |
+| 🔐 **Secure Auth** | JWT-based login & registration |
 
+---
 
 ## 🏗️ Tech Stack
+```
+   FRONTEND
+   React.js · PDF.js
+   Web Speech API · Axios
+        |
+      REST API
+        |
+   BACKEND
+   Node.js · Express
+   JWT · bcrypt · Multer
+        |
+   _____|_____
+   |         |
+Groq API   MongoDB
+LLaMA 3    Users·Docs
+```
 
-
-┌─────────────────────────────────────────────────────┐
-│                    FRONTEND                         │
-│   React.js · Web Speech API · PDF.js               │
-│   Context API (AuthContext) · Axios                │
-└────────────────────┬────────────────────────────────┘
-                     │ REST API
-┌────────────────────▼────────────────────────────────┐
-│                    BACKEND                          │
-│   Node.js · Express.js · Multer (file upload)      │
-│   JWT Authentication · bcrypt                      │
-└────────────────────┬────────────────────────────────┘
-                     │
-        ┌────────────┴────────────┐
-        │                         │
-┌───────▼────────┐    ┌──────────▼──────────┐
-│   Groq API     │    │      MongoDB         │
-│  (LLaMA 3)     │    │  Users · Documents  │
-└────────────────┘    └─────────────────────┘
-
+---
 
 ## 📁 Project Structure
-
+```
 VakilAI/
 ├── backend/
-│   ├── server.js                        # Main Express server
+│   ├── server.js
 │   ├── config/
-│   │   ├── db.js                        # MongoDB connection
-│   │   └── groq.js                      # Groq API setup
+│   │   ├── db.js
+│   │   └── groq.js
 │   ├── controllers/
-│   │   ├── analysisController.js        # AI analysis logic
-│   │   ├── authController.js            # Login / Register
-│   │   └── documentController.js       # Document CRUD
+│   │   ├── analysisController.js
+│   │   ├── authController.js
+│   │   └── documentController.js
 │   ├── middleware/
-│   │   ├── authMiddleware.js            # JWT protection
-│   │   └── uploadMiddleware.js          # Multer file upload
+│   │   ├── authMiddleware.js
+│   │   └── uploadMiddleware.js
 │   ├── models/
-│   │   ├── Document.js                  # Document schema
-│   │   └── User.js                      # User schema
+│   │   ├── Document.js
+│   │   └── User.js
 │   └── routes/
 │       ├── analysisRoutes.js
 │       ├── authRoutes.js
 │       └── documentRoutes.js
 │
-└── frontend/
-    └── src/
-        ├── App.js                        # Main app + routing
-        ├── components/
-        │   ├── pages/
-        │   │   ├── HomePage.js
-        │   │   ├── UploadPage.js
-        │   │   ├── AnalysisPage.js
-        │   │   ├── DocumentsPage.js
-        │   │   ├── LoginPage.js
-        │   │   └── RegisterPage.js
-        │   ├── common/
-        │   │   ├── ClauseCard.js         # Clause breakdown UI
-        │   │   ├── RiskMeter.js          # Visual risk indicator
-        │   │   └── VoiceButton.js        # TTS trigger button
-        │   └── layout/
-        │       └── Navbar.js
-        ├── context/
-        │   └── AuthContext.js            # Global auth state
-        ├── hooks/
-        │   └── useVoice.js               # Web Speech API hook
-        └── services/
-            ├── api.js                    # Axios base config
-            └── documentService.js       # Document API calls
+└── frontend/src/
+    ├── App.js
+    ├── components/
+    │   ├── pages/
+    │   │   ├── HomePage.js
+    │   │   ├── UploadPage.js
+    │   │   ├── AnalysisPage.js
+    │   │   ├── DocumentsPage.js
+    │   │   ├── LoginPage.js
+    │   │   └── RegisterPage.js
+    │   ├── common/
+    │   │   ├── ClauseCard.js
+    │   │   ├── RiskMeter.js
+    │   │   └── VoiceButton.js
+    │   └── layout/
+    │       └── Navbar.js
+    ├── context/
+    │   └── AuthContext.js
+    ├── hooks/
+    │   └── useVoice.js
+    └── services/
+        ├── api.js
+        └── documentService.js
+```
 
+---
 
 ## 🚀 Getting Started
 
@@ -105,40 +105,39 @@ VakilAI/
 - MongoDB (local or Atlas)
 - Groq API Key → [console.groq.com](https://console.groq.com)
 
-
 ### 1. Clone the Repository
-
+```bash
 git clone https://github.com/Solkar-Mubashshir/VakilAi.git
 cd VakilAi
+```
 
 ### 2. Backend Setup
-
+```bash
 cd backend
 npm install
+```
 
 Create a `.env` file in the `backend/` folder:
-
+```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 GROQ_API_KEY=your_groq_api_key
-
-Start the backend server:
-
-
+```
+```bash
 npm run dev
-
+```
 
 ### 3. Frontend Setup
-
-
+```bash
 cd ../frontend
 npm install
 npm start
+```
 
+App runs at → `http://localhost:3000`
 
-The app will run at `http://localhost:3000`
-
+---
 
 ## 🔑 Environment Variables
 
@@ -149,17 +148,17 @@ The app will run at `http://localhost:3000`
 | `JWT_SECRET` | Secret key for JWT token signing |
 | `GROQ_API_KEY` | Groq API key for LLaMA 3 access |
 
+---
 
 ## 🔄 How It Works
-
-
+```
 User uploads PDF
       ↓
 PDF.js extracts text (frontend)
       ↓
-Text sent to Node.js backend via REST API
+Sent to Node.js backend via REST API
       ↓
-Backend sends text to Groq API (LLaMA 3)
+Backend calls Groq API (LLaMA 3)
       ↓
 AI returns:
   • Plain English / Hindi summary
@@ -170,8 +169,10 @@ Frontend displays:
   • ClauseCards (per-clause breakdown)
   • Voice explanation (Web Speech API)
       ↓
-Document saved to MongoDB under user account
+Saved to MongoDB under user account
+```
 
+---
 
 ## 🛡️ Security
 
@@ -180,6 +181,7 @@ Document saved to MongoDB under user account
 - File uploads handled securely via **Multer**
 - Each user can only access their own documents
 
+---
 
 ## 🌐 API Endpoints
 
@@ -200,10 +202,14 @@ Document saved to MongoDB under user account
 |--------|----------|-------------|
 | POST | `/api/analysis` | Analyze uploaded PDF text |
 
+---
 
 ## 📄 License
 
 This project is built for educational and hackathon purposes.
 
+---
 
-"VakilAI — Because everyone deserves to understand what they sign."
+> *"Because everyone deserves to understand what they sign."*
+>
+> Built with ❤️ for **Hacktoon 1.0** · Neuronyx Club · AIKTC

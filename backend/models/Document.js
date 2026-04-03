@@ -30,6 +30,8 @@ const documentSchema = new mongoose.Schema(
       clauses:      [clauseSchema],
       riskScore:    { type: Number, min: 0, max: 100, default: 0 },
       keyPoints:    [{ type: String }],
+      redFlags:     [{ type: String }],   // NEW
+      advice:       { type: String },     // NEW
       language:     { type: String, enum: ['english', 'hindi'], default: 'english' },
     },
   },

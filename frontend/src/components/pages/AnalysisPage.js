@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import {
   Container, Box, Typography, Grid, Button,
   Tabs, Tab, ToggleButton, ToggleButtonGroup,
-   Chip, Divider, Alert,
+  Chip, Divider, Alert,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import GavelIcon from '@mui/icons-material/Gavel';
@@ -70,6 +70,7 @@ const AnalysisPage = () => {
 
   const analysis       = doc.analysis || {};
   const clauses        = analysis.clauses || [];
+  const redFlags       = analysis.redFlags || [];      // NEW
   const riskyClauses   = clauses.filter(c => c.risk === 'risky');
   const safeClauses    = clauses.filter(c => c.risk === 'safe');
   const neutralClauses = clauses.filter(c => c.risk === 'neutral');
@@ -80,6 +81,8 @@ const AnalysisPage = () => {
     Key Points: ${(analysis.keyPoints || []).join('. ')}.
     Risk Score: ${analysis.riskScore || 0} out of 100.
     There are ${riskyClauses.length} risky clauses and ${safeClauses.length} safe clauses.
+    ${redFlags.length > 0 ? `Red Flags: ${redFlags.join('. ')}.` : ''}
+    ${analysis.advice ? `Advice: ${analysis.advice}` : ''}
   `;
 
   return (
@@ -172,6 +175,35 @@ const AnalysisPage = () => {
                 </Box>
               )}
 
+              {/* 🚨 NEW: Red Flags */}
+              {redFlags.length > 0 && (
+                <Box className="vk-card fade-in-up delay-2" sx={{ mb: 3, border: '1px solid #FECACA', bgcolor: '#FFF5F5' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 700, color: '#B91C1C', mb: 2, fontFamily: 'var(--font-head)' }}>
+                    🚨 Red Flags
+                  </Typography>
+                  {redFlags.map((flag, i) => (
+                    <Box key={i} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 1.5 }}>
+                      <Typography sx={{ color: '#EF4444', fontSize: '1rem', mt: 0.2 }}>⚠️</Typography>
+                      <Typography variant="body2" sx={{ color: '#7F1D1D', lineHeight: 1.7, fontWeight: 500 }}>
+                        {flag}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              )}
+
+              {/* 💡 NEW: Advice */}
+              {analysis.advice && (
+                <Box className="vk-card fade-in-up delay-2" sx={{ mb: 3, border: '1px solid #BBF7D0', bgcolor: '#F0FDF4' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 700, color: 'var(--green)', mb: 1.5, fontFamily: 'var(--font-head)' }}>
+                    💡 {language === 'hindi' ? 'VakilAI की सलाह' : 'VakilAI Advice'}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#14532D', lineHeight: 1.8 }}>
+                    {analysis.advice}
+                  </Typography>
+                </Box>
+              )}
+
               {/* Clauses */}
               {clauses.length > 0 && (
                 <Box className="vk-card fade-in-up delay-2">
@@ -219,6 +251,8 @@ const AnalysisPage = () => {
                     { label: '🔴 Risky Clauses',   count: riskyClauses.length,   bg: '#FDEDED', color: 'var(--red)' },
                     { label: '🟢 Safe Clauses',    count: safeClauses.length,    bg: '#EDF7F1', color: 'var(--green)' },
                     { label: '🔵 Neutral Clauses', count: neutralClauses.length, bg: '#EEF2FF', color: '#4338CA' },
+                    // NEW
+                    { label: '🚨 Red Flags',       count: redFlags.length,       bg: '#FFF5F5', color: '#B91C1C' },
                   ].map((item) => (
                     <Box key={item.label} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 1.25, bgcolor: item.bg, borderRadius: 2 }}>
                       <Typography variant="body2" sx={{ fontWeight: 600, color: item.color }}>{item.label}</Typography>
